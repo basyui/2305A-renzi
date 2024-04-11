@@ -15,7 +15,7 @@ module.exports = defineConfig({
   // 关闭代码风格检查
   lintOnSave: false,
   // 路径设置
-  publicPath: "./",
+  publicPath: "/",
   // 输出目录
   outputDir: "dist",
   // 资源目录
@@ -23,22 +23,31 @@ module.exports = defineConfig({
   // 开发服务器配置
   devServer: {
     // 端口设置
-    port: 8081,
+    port: "4090",
     // 是否开启开发服务器
+		host: "0.0.0.0",
     open: false,
     // 是否使用HTTPS
     https: false,
     // 代理配置
     proxy: {
       // 代理路径
-      "/api": {
-        // 是否允许跨域
+      // "/api": {
+      //   // 是否允许跨域
+      //   changeOrigin: true,
+      //   // 目标服务器
+      //   target: "https://www.baidu.com",
+      //   // 路径重写
+      //   pathRewrite: {
+      //     "^/api": ""
+      //   }
+      // }
+      [process.env.VUE_APP_BASE_API]: {
+        target: process.env.VUE_APP_BASE_URL,
         changeOrigin: true,
-        // 目标服务器
-        target: "https://www.baidu.com",
-        // 路径重写
+        secure: false,
         pathRewrite: {
-          "^/api": ""
+          ["^" + process.env.VUE_APP_BASE_API]: " "
         }
       }
     }

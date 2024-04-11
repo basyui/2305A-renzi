@@ -1,5 +1,7 @@
 <template>
-	<div class=''></div>
+	<div class=''>
+		<el-button type="primary">退出登录</el-button>
+	</div>
 </template>
 
 <script>
