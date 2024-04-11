@@ -45,13 +45,14 @@ export default {
 }
 </style>
 <style>
-	.el-calendar{
-		/* height: 100px; */
-		box-sizing: border-box;
-	}
-	.el-calendar-table .el-calendar-day{
-		box-sizing: border-box;
-    padding: 8px;
-    height: 35px;
-	}
+.el-calendar {
+	/* height: 100px; */
+	box-sizing: border-box;
+}
+
+.el-calendar-table .el-calendar-day {
+	box-sizing: border-box;
+	padding: 8px;
+	height: 35px;
+}
 </style>
