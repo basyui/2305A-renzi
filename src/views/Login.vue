@@ -2,6 +2,7 @@
 	<div class=''>
 		<div class="bg">
 			<div class="login">
+				<FullScreen></FullScreen>
 				<img class="logo" src="../assets//common//login-logo.png" alt="">
 				<el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
 					<el-form-item prop="mobile">
@@ -26,9 +27,10 @@
 <script>
 import { login } from '@/api/api'
 import { setToken } from '@/utils/auth'
+import FullScreen from '@/components/FullScreen.vue'
 export default {
 
-	components: {},
+	components: {FullScreen},
 	data() {
 		return {
 			ruleForm: {
@@ -60,7 +62,7 @@ export default {
 								message: '登陆成功.',
 								type: 'success'
 							});
-							this.$router.replace('/index')
+							this.$router.replace('/home')
 						} else {
 							console.log(res);
 							this.$message.error(res.message);

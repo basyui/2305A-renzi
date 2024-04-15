@@ -1,7 +1,7 @@
 <template>
 	<div class='top'>
 		<div class="left">
-			<i class="el-icon-s-fold" style="color: white;"></i>
+			<i @click="show" class="el-icon-s-fold" style="color: white;"></i>
 			<div class="tit">江苏传智播客教育科技股份有限公司</div>
 			<div class="version">体验版</div>
 		</div>
@@ -12,9 +12,9 @@
 					<img src="../../assets/common/search.png" alt="">
 				</el-tooltip>
 			</div>
-			<div class="full">
-				<el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
-					<img src="../../assets//common/full.png" alt="">
+			<div class="full" @click="fn">
+				<el-tooltip class="item" effect="dark" :content="flag==false?'全屏':'退出全屏'" placement="bottom">
+					<img :src="flag==false?require('../../assets/common/full.png'):require('../../assets/common/escfull.png')" alt="">
 				</el-tooltip>
 			</div>
 			<div class="zh">
@@ -35,18 +35,24 @@
 </template>
 
 <script>
-
+import screenfull from 'screenfull'
 export default {
 	components: {},
 	data() {
 		return {
-
+			flag: false
 		};
 	},
 	computed: {},
 	watch: {},
 	methods: {
-
+		show(){
+			this.$store.commit('changeCollapse')
+		},
+		fn(){
+			this.flag=!this.flag
+			screenfull.toggle();
+		}
 	},
 }
 </script>

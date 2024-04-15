@@ -1,11 +1,13 @@
 <template>
-	<div class=''></div>
+	<div class=''>
+		<structure></structure>
+	</div>
 </template>
 
 <script>
-
+import structure from "@/components/structure.vue"
 export default {
-	components: {},
+	components: {structure},
 	data() {
 		return {
 

@@ -1,41 +1,31 @@
 <template>
-	<div class=''>
-		<el-container>
-			<el-aside width="180px">
-				<asideBar></asideBar>
-			</el-aside>
+	<div>
 			<el-container>
-				<el-header>
-					<topBar></topBar>
-				</el-header>
-				<el-main>
-					<user></user>
-					<div class="count">
-						<div class="left-coun">
-							<calendar></calendar>
-							<announcement></announcement>
-						</div>
-						<div class="right-coun">
-							<card></card>
-							<quStart></quStart>
-						</div>
-					</div>
-				</el-main>
+				<el-aside :class="this.$store.state.isCollapse == false ? 'hidden' : 'show'">
+					<asideBar></asideBar>
+				</el-aside>
+				<!-- <div class="box"></div> -->
+				<el-container>
+					<el-header>
+						<topBar></topBar>
+					</el-header>
+					<el-main>
+
+						<router-view />
+						<bootom></bootom>
+					</el-main>
+				</el-container>
 			</el-container>
-		</el-container>
-	</div>
+		</div>
 </template>
 
 <script>
 import asideBar from '@/components/layout/asideBar.vue'
 import topBar from '@/components/layout/topBar.vue'
-import user from '@/components/user.vue'
-import calendar from "@/components/calendar.vue"
-import announcement from "@/components/announcement.vue"
-import card from "@/components/card.vue"
-import quStart from "@/components/quStart.vue"
+import bootom from '@/components/bootom.vue'
+
 export default {
-	components: { quStart,card,asideBar ,topBar,user,calendar,announcement},
+	components: { asideBar, topBar, bootom },
 	data() {
 		return {
 
@@ -49,32 +39,48 @@ export default {
 }
 </script>
 
-<style scoped>
-.count{
-	margin-top: 20px;
-	display: flex;
-	justify-content: space-between;
+<style scoped></style>
+<style lang="scss">
+.el-aside {
+	box-shadow: 1px 1px 11px 3px #5c5c5cbb;
+	z-index: 2;
+	/* position: fixed; */
 }
-.left-coun,.right-coun{
-	width: 49%;
-}
-</style>
-<style>
-.el-aside{
-	 box-shadow: 1px 1px 11px 3px #5c5c5cbb;
-	 z-index: 2;
-	 position: fixed;
 
+
+.show {
+	width: 64px !important;
+	transition: width 0.2s ease-in-out;
 }
-.el-header{
+
+.hidden {
+	width: 180px !important;
+	transition: width 0.2s ease-in-out;
+}
+
+.el-header {
 	height: 45px;
 	background: linear-gradient(to right, #3e6ef8, #5b8cff);
+	display: flex;
 	/* z-index: -99; */
-	padding-left: 200px;
-}
-.el-main{
-	background-color:#f0f2f5 ;
-	padding-left: 200px;
+	/* padding-left: 200px; */
 }
 
+.el-main {
+	background-color: #f0f2f5;
+	/* width: 100vw; */
+	height: (100vh - 7vh);
+	/* padding-bottom: 80px; */
+	/* display: flex; */
+	/* padding-left: 200px; */
+}
+
+
+.box {
+	background-color: aqua;
+	width: 180px;
+	height: 100vh;
+	/* z-index: 99; */
+}
 </style>
+

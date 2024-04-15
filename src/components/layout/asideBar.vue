@@ -1,24 +1,21 @@
 <template>
 	<div class='aside'>
-		<!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-			<el-radio-button :label="false">展开</el-radio-button>
-			<el-radio-button :label="true">收起</el-radio-button>
-		</el-radio-group> -->
-		<div class="log">
-			<img src="../../assets/common/logo.png" alt="">
+
+		<div class="showlog">
+			<img style="width: 100%;" src="../../assets/common/logo.png" alt="">
 		</div>
 
-		<el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-			:collapse="isCollapse">
-			<el-menu-item index="1">
+		<el-menu default-active="1-4-1" class="el-menu-vertical-demo"
+			:collapse="this.$store.state.isCollapse" router>
+			<el-menu-item index="/home">
 				<i class="el-icon-s-platform ico"></i>
 				<span slot="title">首页</span>
 			</el-menu-item>
-			<el-menu-item index="2">
+			<el-menu-item index="/about">
 				<i class="el-icon-menu ico"></i>
 				<span slot="title">组织架构</span>
 			</el-menu-item>
-			<el-menu-item index="3">
+			<el-menu-item index="/staff">
 				<i class="el-icon-user-solid ico"></i>
 				<span slot="title">员工</span>
 			</el-menu-item>
@@ -58,18 +55,16 @@ export default {
 	components: {},
 	data() {
 		return {
-			isCollapse: false
+			isCollapse: this.$store.state.isCollapse
 		};
+	},
+	created(){
+		console.log(this.$store.state.isCollapse);
 	},
 	computed: {},
 	watch: {},
 	methods: {
-		handleOpen(key, keyPath) {
-			console.log(key, keyPath);
-		},
-		handleClose(key, keyPath) {
-			console.log(key, keyPath);
-		}
+
 	},
 }
 </script>
@@ -78,31 +73,39 @@ export default {
 .aside {
 	background-color: #4777fa;
 	height: 100vh;
-	background-image: url('../../assets/common/leftnavBg.png') ;
+	background-image: url('../../assets/common/leftnavBg.png');
 	/* background-size: 100% 100%; */
 	background-repeat: no-repeat;
 	background-position: bottom;
 }
-.log{
+
+.showlog {
 	width: 100%;
 	text-align: center;
 	padding: 10px;
 	box-sizing: border-box;
+
 }
+
+
+
 </style>
 <style>
 .el-menu-item {
 	background-color: #4777fa;
 	color: white;
 }
-.ico{
-	color: white!important;
+
+.ico {
+	color: white !important;
 }
+
 :hover.el-menu-item {
 	color: #4777fa;
 	background-color: #ffffff6e;
 }
-.el-menu{
+
+.el-menu {
 	border: 0;
 }
 </style>

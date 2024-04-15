@@ -6,25 +6,32 @@ import layout from "@/layout"
 Vue.use(VueRouter)
 
 const routes = [
-
   {
     path: "/",
-		redirect: '/login', // 默认跳转
+    redirect: "/login" // 默认跳转
   },
-  {
-    path: "/about",
-    name: "about",
-    component: () => import("../views/AboutView.vue")
-  },
-  {
-    path: "/home",
-    name: "home",
-    component: () => import("../views/HomeView.vue")
-  },
+
   {
     path: "/index",
     name: "index",
-    component: () => import("../views/Index.vue")
+    component: () => import("../views/Index.vue"),
+    children: [
+      {
+        path: "/home",
+        name: "home",
+        component: () => import("../views/HomeView.vue")
+      },
+      {
+        path: "/about",
+        name: "about",
+        component: () => import("../views/AboutView.vue")
+      },
+      {
+        path: "/staff",
+        name: "astaff",
+        component: () => import("../views/staff.vue")
+      }
+    ]
   },
   {
     path: "/login",
